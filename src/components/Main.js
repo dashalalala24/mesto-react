@@ -1,24 +1,24 @@
-import React from "react"
+import React, { useState, useEffect } from 'react';
 import api from "../utils/Api";
 import Card from "./Card";
 
-function Main(props) {
-  const [userProfilePic, setuserProfilePic] = React.useState('');
-  const [userName, setuserName] = React.useState('');
-  const [userOccupation, setuserOccupation] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+  const [userProfilePic, setUserProfilePic] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userOccupation, setUserOccupation] = useState('');
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo()
       .then((user) => {
-        setuserProfilePic(user.avatar)
-        setuserName(user.name);
-        setuserOccupation(user.about);
+        setUserProfilePic(user.avatar)
+        setUserName(user.name);
+        setUserOccupation(user.about);
       })
       .catch((error) => console.log(error));
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getInitialCards()
       .then((cards) => {
         setCards(cards)
@@ -32,7 +32,7 @@ function Main(props) {
         <div className="profile__info">
           <div
             className="profile__pic-container"
-            onClick={props.onEditAvatar}>
+            onClick={onEditAvatar}>
             <img
               className="profile__pic"
               alt="Аватар"
@@ -44,21 +44,21 @@ function Main(props) {
             className="profile__edit-button"
             type="button"
             aria-label="Редактировать профиль"
-            onClick={props.onEditProfile}></button>
+            onClick={onEditProfile}></button>
         </div>
         <button
           className="profile__add-button"
           type="button"
           aria-label="Добавить фото"
-          onClick={props.onAddPlace}></button>
+          onClick={onAddPlace}></button>
       </section>
 
       <section className="cards" aria-label="Карточки с фотографиями">
-        {cards.map((card, i) => (
+        {cards.map((card, _id) => (
           <Card
-            key={i}
+            key={_id}
             card={card}
-            onCardClick={props.onCardClick} />
+            onCardClick={onCardClick} />
         ))}
       </section>
 

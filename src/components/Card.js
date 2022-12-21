@@ -1,16 +1,16 @@
 import React from "react";
 
-function Card(props) {
+function Card({ card, onCardClick }) {
   function handleClick() {
-    props.onCardClick(props.card);
+    onCardClick(card);
   }
 
   return (
     <article className="cards__item">
       <img
         className="cards__image"
-        alt={`Фотография: ${props.card.name}`}
-        src={props.card.link}
+        alt={`Фотография: ${card.name}`}
+        src={card.link}
         onClick={handleClick}
       />
       <button
@@ -18,13 +18,13 @@ function Card(props) {
         type="button"
         aria-label="Удалить карточку"></button>
       <div className="cards__element">
-        <h2 className="cards__name">{props.card.name}</h2>
+        <h2 className="cards__name">{card.name}</h2>
         <div className="cards__like-container">
           <button
             className="cards__like"
             type="button"
             aria-label="Нравится"></button>
-          <p className="cards__like-counter">0</p>
+          <p className="cards__like-counter">{card.likes.length}</p>
         </div>
       </div>
     </article>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -6,10 +6,10 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -28,7 +28,7 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
-    console.log(selectedCard)
+    console.log(selectedCard);
   }
 
   function handleCardClick(card) {
@@ -50,11 +50,12 @@ function App() {
       <Footer />
 
       <PopupWithForm
-        name={'edit-profilepic'}
+        name='edit-profilepic'
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        title={'Обновить аватар'}
-        formName={'profilepic'}
+        title='Обновить аватар'
+        formName='profilepic'
+        buttonText='Сохранить'
         children={(
           <>
             <input
@@ -68,19 +69,17 @@ function App() {
             <span
               id="profilepic-link-input-error"
               className="popup__error profilepic-link-input-error"></span>
-            <button
-              className="popup__button"
-              type="submit">Сохранить</button>
           </>
         )}
       />
 
       <PopupWithForm
-        name={'edit-profile'}
+        name='edit-profile'
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        title={'Редактировать профиль'}
-        formName={'user'}
+        title='Редактировать профиль'
+        formName='user'
+        buttonText='Сохранить'
         children={(
           <>
             <input
@@ -109,19 +108,17 @@ function App() {
             <span
               id="occupation-input-error"
               className="popup__error occupation-input-error"></span>
-            <button
-              className="popup__button"
-              type="submit">Сохранить</button>
           </>
         )}
       />
 
       <PopupWithForm
-        name={'new-card'}
+        name='new-card'
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        title={'Новое место'}
-        formName={'card'}
+        title='Новое место'
+        formName='card'
+        buttonText='Создать'
         children={(
           <>
             <input
@@ -147,23 +144,17 @@ function App() {
             <span
               id="link-input-error"
               className="popup__error link-input-error"></span>
-            <button
-              className="popup__button"
-              type="submit">Создать</button>
           </>
         )}
       />
 
       {/* <PopupWithForm
-        name={'confirm-deletion'}
+        name='confirm-deletion'
         isOpen={isConfirmDeletionPopupOpen}
         onClose={isPopupClosed}
-        title={'Вы уверены?'}
-        formName={'delete'}
-        children={(
-          <>
-            <button className="popup__button" type="submit">Да</button>
-          </>)}
+        title='Вы уверены?'
+        formName='delete'
+        buttonText='Да'
       /> */}
 
       <ImagePopup
