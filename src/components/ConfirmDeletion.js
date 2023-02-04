@@ -1,27 +1,23 @@
-// import { useEffect } from 'react';
-// import PopupWithForm from './PopupWithForm';
+import PopupWithForm from './PopupWithForm';
 
-// function ConfirmDeletion({ isOpen, onClose, onConfirm }) {
+function ConfirmDeletion({ isOpen, onClose, onCardDelete, card, onLoading }) {
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onCardDelete(card);
+  }
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
+  return (
+    <PopupWithForm
+      name="confirm-deletion"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      title="Вы уверены?"
+      formName="delete"
+      onLoading={onLoading}
+      buttonText={onLoading ? `Удаление...` : `Удалить`}
+    />
+  );
+}
 
-//     onConfirm({
-
-//     })
-//   }
-
-//   return (
-//     <PopupWithForm
-//       name="confirm-deletion"
-//       isOpen={isOpen}
-//       onClose={onClose}
-//       onSubmit={handleSubmit}
-//       title="Вы уверены?"
-//       formName="delete"
-//       buttonText="Да"
-//     />
-//   );
-// }
-
-// export default ConfirmDeletion;
+export default ConfirmDeletion;

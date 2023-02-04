@@ -9,6 +9,7 @@ function PopupWithForm({
   isOpen,
   onClose,
   onSubmit,
+  // onLoading,
 }) {
   return (
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
@@ -25,6 +26,7 @@ function PopupWithForm({
           method="get"
           name={formName}
           onSubmit={onSubmit}
+          // onLoading={onLoading}
           noValidate
         >
           {children}

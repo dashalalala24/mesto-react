@@ -30,11 +30,6 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         src={card.link}
         onClick={handleClick}
       />
-      {/* <button
-        className="cards__delete-button"
-        type="button"
-        aria-label="Удалить карточку"
-      ></button> */}
 
       {isOwn && (
         <button
