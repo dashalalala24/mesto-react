@@ -14,16 +14,14 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._serverURL}/cards`, {
-      headers: this._headers
-    })
-      .then(this._checkRes);
+      headers: this._headers,
+    }).then(this._checkRes);
   }
 
   getUserInfo() {
     return fetch(`${this._serverURL}/users/me`, {
       headers: this._headers,
-    })
-      .then(this._checkRes);
+    }).then(this._checkRes);
   }
 
   setUserInfo(data) {
@@ -33,10 +31,8 @@ class Api {
       body: JSON.stringify({
         name: data.name,
         about: data.about,
-
-      })
-    })
-      .then(this._checkRes);
+      }),
+    }).then(this._checkRes);
   }
 
   setProfilePic(data) {
@@ -44,10 +40,9 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar
-      })
-    })
-      .then(this._checkRes);
+        avatar: data.avatar,
+      }),
+    }).then(this._checkRes);
   }
 
   addNewCard(data) {
@@ -57,41 +52,44 @@ class Api {
       body: JSON.stringify({
         name: data.name,
         link: data.link,
-      })
-    })
-      .then(this._checkRes);
+      }),
+    }).then(this._checkRes);
   }
 
-  putLike(cardId) {
-    return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: this._headers,
-    })
-        .then(this._checkRes);
-  }
+  // putLike(cardId) {
+  //   return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
+  //     method: 'PUT',
+  //     headers: this._headers,
+  //   }).then(this._checkRes);
+  // }
 
-  removeLike(cardId) {
+  // removeLike(cardId) {
+  //   return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
+  //     method: 'DELETE',
+  //     headers: this._headers,
+  //   }).then(this._checkRes);
+  // }
+
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
-      method: 'DELETE',
+      method: `${isLiked ? 'PUT' : 'DELETE'}`,
       headers: this._headers,
-    })
-      .then(this._checkRes);
+    }).then(this._checkRes);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._serverURL}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    })
-      .then(this._checkRes);
+    }).then(this._checkRes);
   }
 }
 
 const apiConfig = {
-  serverURL: "https://mesto.nomoreparties.co/v1/cohort-54",
+  serverURL: 'https://mesto.nomoreparties.co/v1/cohort-54',
   headers: {
     authorization: '9732efc5-811e-490a-92fd-fca287deba43',
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 
